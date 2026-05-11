@@ -1,0 +1,8 @@
+First digit --> model design 
+1 --> ACTH + Cort
+2--> ACTH + Cort + TNF-a
+3 --> ACTH + Cort + TNF-a + IL10
+
+Second Digit --> datapoints
+1--> 24
+2 -->12
