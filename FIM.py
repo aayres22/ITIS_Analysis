@@ -36,7 +36,7 @@ param_ids = results['param_ids']
 
 ##SENSITIVITY ANALYSIS
 h = 1e-6  #amount to perturb parameters
-n_param = len(param_log)
+n_param = len(param_opt)
 n_states = len(output_ids)
 
 Sensitivity_Mat = np.zeros((n_param, len(t_data) * n_states))  ##Initialize shape of sensitivity matrix.
@@ -59,10 +59,10 @@ for i in range(n_param):  #calculate the relative sensitivity to each 45 paramet
                                             - OLS_res(param_in, y_data, t_data, i, output_ids, param_log, IC)))
 
 
-
-
-twonorms = np.zeros(n_param)
-
-for i in range(n_param):
-        twonorms[i] = np.power(sum(np.power(Sensitivity_Mat[i, :], 2)), 1 / 2)
-
+print(Sensitivity_Mat)
+#
+# twonorms = np.zeros(n_param)
+#
+# for i in range(n_param):
+#         twonorms[i] = np.power(sum(np.power(Sensitivity_Mat[i, :], 2)), 1 / 2)
+#

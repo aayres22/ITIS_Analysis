@@ -8,7 +8,7 @@ param_log,IC = get_nominal_param()
 pickles = ['11', '12', '21', '22', '31', '32']
 
 for pic in pickles:
-    with open('ResAnalysis' + pic + '.pkl', 'rb') as f:
+    with open('OLS_Results\\ResAnalysis' + pic + '.pkl', 'rb') as f:
         results = pickle.load(f)
 
 
@@ -81,9 +81,10 @@ for pic in pickles:
         bars = plt.bar(i, c, align='center', color = '#1f77b4')
     plt.xlim(-0.9, len(paramtitles) - 1 + 0.9)
 
-    plt.savefig("C:\\Users\\ayres\\Desktop\\RESEARCH, GRANTS, LIFE!!!!\\ITIS Analysis 25-26\\Figures\\LSorted" + pic + ".png")
+    #plt.savefig("C:\\Users\\ayres\\Desktop\\RESEARCH, GRANTS, LIFE!!!!\\ITIS Analysis 25-26\\Figures\\LSorted" + pic + ".png")
     fig.tight_layout()
     plt.show()
+
 
 
 ### ROUTINE FOR OPTIMAL VS TRUE MODEL FITS
