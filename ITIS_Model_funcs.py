@@ -85,10 +85,9 @@ def get_nominal_param():
     CRH_0 = 22
     ACTH_0 = 150
     cort_0 = 1.9
-
     # MJC - start this without the infection so we reach a steady state, then we can implement the infection
-    IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208]
-
+    #IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208]
+    IC =  [endo_0, phag_0, TGFB_0, TNF_0, IL10_0, CRH_0, ACTH_0, cort_0]
     return param_log, IC
 
 def ITIS(y,t,param):
