@@ -87,8 +87,7 @@ def get_nominal_param():
     cort_0 = 1.9
 
     # MJC - start this without the infection so we reach a steady state, then we can implement the infection
-    IC = [0.0, 0., 0.1595967, 0., 14.68266827,
-          41.49891056, 39.97751646, 11.29827208]
+    IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208]
 
     return param_log, IC
 
