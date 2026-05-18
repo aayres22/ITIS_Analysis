@@ -56,12 +56,12 @@ def get_nominal_param():
     # Parameters for the circadian rhythm
     alpha = 300 #min
     k     = 5 #ND
-    beta = 950 #min
-    L = 6 #ND
-    eps = 0.01 #ND
+    beta  = 950 #min
+    L     = 6 #ND
+    eps   = 0.01 #ND
     delta = 70#76.37 #min
-    T = 1440 # min
-    Nc = 1.9168
+    T     = 1440 # min
+    Nc    = 1.9168
 
 
     param = [d1,            #0
@@ -86,7 +86,7 @@ def get_nominal_param():
     ACTH_0 = 150
     cort_0 = 1.9
     # MJC - start this without the infection so we reach a steady state, then we can implement the infection
-    #IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208]
+    #IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208] (UNSURE WHAT TIMEPOINT THIS WAS PULLED FROM)
     IC =  [endo_0, phag_0, TGFB_0, TNF_0, IL10_0, CRH_0, ACTH_0, cort_0]
     return param_log, IC
 
