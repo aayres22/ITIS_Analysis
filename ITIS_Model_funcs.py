@@ -137,8 +137,8 @@ alpha, k, beta, L, eps, delta, T, Nc) = np.exp(param)
 def OLS_res(param_in,y_data,t_data,param_ids,output_ids,param_fix,IC):
     # First, we may only want to update certain parameters. This will be defined in param_ids, which should include
     # the indices for which parameters are updated. Param_fix will have the "fixed" values
-    param_eval = param_fix
-    param_eval[param_ids] = param_in
+    param_eval = param_fix.copy()
+    param_eval[param_ids] = param_in.copy()
     ##Define time spaces
     tstart = 0
     t_end =24*8
