@@ -86,7 +86,7 @@ def get_nominal_param():
     ACTH_0 = 150
     cort_0 = 1.9
     # MJC - start this without the infection so we reach a steady state, then we can implement the infection
-    #IC = [ 0.,          0.,          0.14759607,  0.,         13.75484703,  3.13344442, 15.73028492,  1.38649737] ##VALUES AT t = 24*8
+    #IC = [ 0.,          0.,          0.14759607,  0.,         13.75484703,  3.13344442, 15.73028492,  1.38649737] ##Pre-inj VALUES AT t = 24*8
     IC =  [endo_0, phag_0, TGFB_0, TNF_0, IL10_0, CRH_0, ACTH_0, cort_0]
     return param_log, IC
 
