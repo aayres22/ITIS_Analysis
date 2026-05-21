@@ -86,7 +86,7 @@ def get_nominal_param():
     ACTH_0 = 150
     cort_0 = 1.9
     # MJC - start this without the infection so we reach a steady state, then we can implement the infection
-    #IC = [0.0, 0., 0.1595967, 0., 14.68266827, 41.49891056, 39.97751646, 11.29827208] (UNSURE WHAT TIMEPOINT THIS WAS PULLED FROM)
+    #IC = [ 0.,          0.,          0.14759607,  0.,         13.75484703,  3.13344442, 15.73028492,  1.38649737]
     IC =  [endo_0, phag_0, TGFB_0, TNF_0, IL10_0, CRH_0, ACTH_0, cort_0]
     return param_log, IC
 
@@ -140,28 +140,28 @@ def OLS_res(param_in,y_data,t_data,param_ids,output_ids,param_fix,IC):
     param_eval = param_fix.copy()
     param_eval[param_ids] = param_in.copy()
     ##Define time spaces
-    tstart = 0
-    t_end =24*8
+    # tstart = 0
+    # t_end =24*8
     dt = .05
-    tspace = np.arange(tstart,t_end,dt) # The time frame to solve the model to reach steady state (before we grab any output)
+    #tspace = np.arange(tstart,t_end,dt) # The time frame to solve the model to reach steady state (before we grab any output)
     tfinal = np.arange(0,24+dt,dt)
 
     ##Solve the model at nominal values
     ode_options = {'rtol': 1e-6} # sets the numerical accuracy of the ODE solver (i.e., how fine of a time step do we need)
-    ODE_sol = odeint(ITIS, IC, tspace, args = (param_eval,), **ode_options)
+    #ODE_sol = odeint(ITIS, IC, tspace, args = (param_eval,), **ode_options)
 
     # MJC - this is where we can specify that the infection begins during this final time point
-    IC_2    = ODE_sol[-1,:]
-    IC_2[0] = 2.0
+    #IC_2    = ODE_sol[-1,:]
+    IC[0] = 2.0
     # Resolve model only over 24 hours at subsampled time points. This will be used as our data
-    ODE_sol = odeint(ITIS, IC_2, tfinal, args = (param_eval,), **ode_options)
+    ODE_sol = odeint(ITIS, IC, tfinal, args = (param_eval,), **ode_options)
 
     # In a similar way, the data may be only a subset of the observations. We will assume that
     # we have the same number of time points for now, but can modify this as well
     model_output = np.zeros((len(t_data),len(output_ids)))
 
     for i, time in enumerate(t_data):
-        t_index = np.where(tspace==time) #Grabs the index correpsonding to where we have data
+        t_index = np.where(tfinal==time) #Grabs the index correpsonding to where we have data
         for j, mod_out in enumerate(output_ids): #Loop over which outputs we want to compare to data
             model_output[i,j] = ODE_sol[t_index,mod_out][0][0] ##THIS IS BEHAVING WEIRDLY
 

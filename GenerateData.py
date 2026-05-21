@@ -23,14 +23,14 @@ IC_2[0] = 2.0
 true_sol = odeint(ITIS, IC_2, tfinal, args = (param_log,), **ode_options)
 
 
-t_data = np.linspace(0,24,24+1) # time points every hour
-#t_data = np.linspace(0,24,12+1) # less data, every 30 minutes
+#t_data = np.linspace(0,24,24+1) # time points every hour
+t_data = np.linspace(0,24,12+1) # less data, every 30 minutes
 
 
 #Generate data
-output_ids = [6, 7] # Neuroendocrine = ACTH + Cort
+#output_ids = [6, 7] # Neuroendocrine = ACTH + Cort
 #output_ids = [3, 6, 7] # TNF + ACTH + Cort
-# output_ids = [3,4,6,7] #TNF + IL10 + ACTH + Cort
+output_ids = [3,4,6,7] #TNF + IL10 + ACTH + Cort
 
 # Define data
 nt = len(t_data)
@@ -43,13 +43,11 @@ for i, time in enumerate(t_data):
         # This was causing an issue - it gave back a vector of 1s
         y_data[i,j] = true_sol[index,out_id][0][0]
 
-y_data = y_data.copy()+ np.random.normal(0,4,(nt,len(output_ids)))
-
 all_results = {
      'y_data': y_data,
      't_data': t_data,
      'tfinal': tfinal,
   }
 
-with open('syntheticData\\set5.pkl', 'wb') as f:
+with open('syntheticData\\TRUE_SOL32.pkl', 'wb') as f:
       pickle.dump(all_results, f)
