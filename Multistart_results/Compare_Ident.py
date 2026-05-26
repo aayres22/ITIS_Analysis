@@ -29,8 +29,7 @@ paramtitles = ['d1',
 'alpha', 'k', 'beta', 'L', 'eps', 'delta', 'T', 'Nc']
 
 D = '1'
-
-with open('Multistart_results\\OLSMultistart_nonoise_' + D + '1' + '.pkl', 'rb') as f:
+with open('OLSMultistart_nonoise_' + D + '1' + '.pkl', 'rb') as f:
     results = pickle.load(f)
 
 rel_err1 = results['rel_err']
@@ -45,13 +44,13 @@ param_ids2 = results['param_ids']
 opt_cost2 = results['opt_cost']
 
 for i in range(len(param_ids1)):
-    plt.subplot(len(param_ids1),2, i)
+    plt.subplot(len(param_ids1),2, i+1)
     plt.scatter(rel_err1[:,i],opt_cost1,marker='o')
     plt.axvline(0,linestyle='--')
     plt.title(paramtitles[param_ids1[i]])
     plt.xlim([-0.4,0.4])
 
-    plt.subplot(len(param_ids1),2, i + len(param_ids1))
+    plt.subplot(len(param_ids1),2, i + 1 + len(param_ids1))
     plt.scatter(rel_err2[:, i], opt_cost2, marker='o')
     plt.axvline(0, linestyle='--')
     plt.title(paramtitles[param_ids1[i]])
