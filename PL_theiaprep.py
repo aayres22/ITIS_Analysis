@@ -437,26 +437,26 @@ with open('syntheticData\\TRUE_SOL' + D + dpoints + '.pkl', 'rb') as f:
 y_data = results['y_data'].copy()
 t_data = results['t_data'].copy()
 
-plt.figure()
-plt.subplot(4,1,1)
-plt.scatter(t_data,y_data[:,0],marker='x',color='k',label='obs')
-plt.plot(tfinal,true_sol[:,output_ids[0]],label='true')
-plt.title('True model + observations')
-plt.legend()
+# plt.figure()
+# plt.subplot(4,1,1)
+# plt.scatter(t_data,y_data[:,0],marker='x',color='k',label='obs')
+# plt.plot(tfinal,true_sol[:,output_ids[0]],label='true')
+# plt.title('True model + observations')
+# plt.legend()
+# #
+# plt.subplot(4,1,2)
+# plt.scatter(t_data,y_data[:,1],marker='x',color='k')
+# plt.plot(tfinal,true_sol[:,output_ids[1]])
 #
-plt.subplot(4,1,2)
-plt.scatter(t_data,y_data[:,1],marker='x',color='k')
-plt.plot(tfinal,true_sol[:,output_ids[1]])
-
-# plt.subplot(4,1,3)
-# plt.scatter(t_data,y_data[:,2],marker='x',color='k')
-# plt.plot(tfinal,true_sol[:,output_ids[2]])
-
-# plt.subplot(4,1,4)
-# plt.scatter(t_data,y_data[:,3],marker='x',color='k')
-# plt.plot(tfinal,true_sol[:,output_ids[3]])
-
-plt.show()
+# # plt.subplot(4,1,3)
+# # plt.scatter(t_data,y_data[:,2],marker='x',color='k')
+# # plt.plot(tfinal,true_sol[:,output_ids[2]])
+#
+# # plt.subplot(4,1,4)
+# # plt.scatter(t_data,y_data[:,3],marker='x',color='k')
+# # plt.plot(tfinal,true_sol[:,output_ids[3]])
+#
+# plt.show()
 
 #%%
 # MJC - make these bounds based on the parameter values
@@ -502,8 +502,6 @@ for i in range(len(param_ids)):
 # plt.plot(par_save[2,2,:],J_save[2,:])
 # plt.show()
 #%%
-import pickle
-
 all_results = {
     'param_ids' : param_ids,
     't_data' : t_data,
