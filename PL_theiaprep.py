@@ -507,11 +507,11 @@ all_results = {
     't_data' : t_data,
     'y_data' : y_data,
     'true_sol' : true_sol,
-    'J_save': J_save,
-    'par_save': par_save,
-    'param_global_all': param_global_all
+    'J_save': J_save.copy(),
+    'par_save': par_save.copy(),
+    'param_global_all': param_global_all.copy()
 }
 
-with open('PL_D1_' + D + dpoints + '_nonoise.pkl', 'wb') as f:
+with open('PL_' + D + dpoints + '_nonoise.pkl', 'wb') as f:
     pickle.dump(all_results, f)
 # J_save, par_save, param_global_all
