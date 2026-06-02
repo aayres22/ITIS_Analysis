@@ -432,7 +432,7 @@ elif D == '3':
 
 
 ##use generated sets instead
-with open('syntheticData\\TRUE_SOL' + D + dpoints + '.pkl', 'rb') as f:
+with open('/work/aayres/syntheticData/TRUE_SOL' + D + dpoints + '.pkl', 'rb') as f:
     results = pickle.load(f)
 y_data = results['y_data'].copy()
 t_data = results['t_data'].copy()
@@ -487,12 +487,12 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
     #n_jobs=12
             )
 #%%
-for i in range(len(param_ids)):
-
-    plt.figure()
-    plt.title(paramtitles[param_ids[i]])
-    plt.plot(par_save[i,i,:],J_save[i,:])
-    plt.show()
+# for i in range(len(param_ids)):
+#
+#     plt.figure()
+#     plt.title(paramtitles[param_ids[i]])
+#     plt.plot(par_save[i,i,:],J_save[i,:])
+#     plt.show()
 
 # plt.figure()
 # plt.plot(par_save[1,1,:],J_save[1,:])
@@ -509,7 +509,6 @@ all_results = {
     'true_sol' : true_sol,
     'J_save': J_save.copy(),
     'par_save': par_save.copy(),
-    'param_global_all': param_global_all.copy()
 }
 
 with open('PL_' + D + dpoints + '_nonoise.pkl', 'wb') as f:
