@@ -479,7 +479,7 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
     params=param_log[param_ids],
     bounds=bounds,
     par_fix=[],
-    N=11,
+    N=201,
     profile_width=0.5,
     max_nfev=300,
     finite_diff_step=1e-4,
@@ -502,17 +502,20 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
 # plt.plot(par_save[2,2,:],J_save[2,:])
 # plt.show()
 #%%
-all_results = {
-    'param_ids' : param_ids,
-    't_data' : t_data,
-    'y_data' : y_data,
-    'true_sol' : true_sol,
-    'J_save': np.asarray(J_save),
-    'par_save': np.asarray(par_save),
-    'param_global_all' : np.asarray(param_global_all)
-}
-f
-with open('PL_' + D + dpoints + '_nonoise.pkl', 'wb') as f:
-    pickle.dump(all_results, f)
+# all_results = {
+#     'param_ids' : param_ids,
+#     't_data' : t_data,
+#     'y_data' : y_data,
+#     'true_sol' : true_sol,
+#     'J_save': np.asarray(J_save),
+#     'par_save': np.asarray(par_save),
+#     'param_global_all' : np.asarray(param_global_all)
+# }
 
-# J_save, par_save, param_global_all
+print('J_save:', J_save)
+print('par_save:', par_save)
+print('param_global_all:', param_global_all)
+
+print('paramIds:', param_ids)
+print('t_data:', t_data)
+print('y_data:', y_data)

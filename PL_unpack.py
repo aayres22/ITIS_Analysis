@@ -25,7 +25,7 @@ elif D == '2':
 else:
     output_ids = [3,4,6,7]
 
-with open('PL_Results\\PL_' + D + dpoints + '_nonoise.pkl', 'rb') as f:
+with open('PL_' + D + dpoints + '_nonoise.pkl', 'rb') as f:
     results = pickle.load(f)
 
 # all_results = {
@@ -42,8 +42,8 @@ param_ids = results['param_ids']
 t_data = results['t_data']
 y_data = results['y_data']
 true_sol = results['true_sol']
-J_save = results['J_save'].copy()
-par_save = results['par_save'].copy()
+J_save = results['J_save']
+par_save = results['par_save']
 
 for i in range(len(param_ids)):
 
