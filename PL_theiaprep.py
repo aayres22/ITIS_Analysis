@@ -5,6 +5,11 @@ from scipy.integrate import odeint
 import pickle
 from scipy.optimize import least_squares
 
+D = '1'         # '1' for ACTH + Cort,
+                # '2' for ACTH + Cort + TNF-a
+                # '3' for ACTH + Cort + TNF-a + IL10
+dpoints = '1'   # '1' for 25, '2' for 13
+
 def get_nominal_param():
     d1 = 1.35e-7 # min N-unit inverse
     # Parameters for phagocytes
@@ -415,11 +420,6 @@ true_sol = odeint(ITIS, IC_2, tfinal, args = (param_log,), **ode_options)
 # t_data = np.linspace(0,24,12+1) # less data, every 30 minutes
 #%%
 #Generate data
-D = '1'         # '1' for ACTH + Cort,
-                # '2' for ACTH + Cort + TNF-a
-                # '3' for ACTH + Cort + TNF-a + IL10
-dpoints = '1'   # '1' for 25, '2' for 13
-
 if D == '1':
     output_ids = [6,7]
     param_ids = [33, 12, 36, 43, 32, 39, 7, 16, 31, 15, 37, 9, 8, 28, 14]
@@ -507,10 +507,12 @@ all_results = {
     't_data' : t_data,
     'y_data' : y_data,
     'true_sol' : true_sol,
-    'J_save': J_save.copy(),
-    'par_save': par_save.copy(),
+    'J_save': np.asarray(J_save),
+    'par_save': np.asarray(par_save),
+    'param_global_all' : np.asarray(param_global_all)
 }
-
+f
 with open('PL_' + D + dpoints + '_nonoise.pkl', 'wb') as f:
     pickle.dump(all_results, f)
+
 # J_save, par_save, param_global_all
