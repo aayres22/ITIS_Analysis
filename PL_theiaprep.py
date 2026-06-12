@@ -1,4 +1,4 @@
-#%%
+# #%%
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
@@ -422,7 +422,7 @@ true_sol = odeint(ITIS, IC_2, tfinal, args = (param_log,), **ode_options)
 #Generate data
 if D == '1':
     output_ids = [6,7]
-    param_ids = [33, 12, 36, 43, 32, 39, 7, 16, 31, 15, 37, 9, 8, 28, 14]
+    param_ids = [33,12]#33, 12, 36, 43, 32, 39, 7, 16, 31, 15, 37, 9, 8, 28, 14]
 elif D == '2':
     output_ids = [3,6,7]
     param_ids = [33, 12, 36, 32, 7, 34, 31, 15, 8, 9, 16, 14, 28, 26, 1]
@@ -432,7 +432,7 @@ elif D == '3':
 
 
 ##use generated sets instead
-with open('/work/aayres/syntheticData/TRUE_SOL' + D + dpoints + '.pkl', 'rb') as f:
+with open('syntheticData\\TRUE_SOL' + D + dpoints + '.pkl', 'rb') as f:
     results = pickle.load(f)
 y_data = results['y_data'].copy()
 t_data = results['t_data'].copy()
@@ -512,10 +512,10 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
 #     'param_global_all' : np.asarray(param_global_all)
 # }
 
-print('J_save:', J_save)
-print('par_save:', par_save)
-print('param_global_all:', param_global_all)
+print('J_save:', list(J_save))
+print('par_save:', list(par_save))
+print('param_global_all:', list(param_global_all))
 
-print('paramIds:', param_ids)
-print('t_data:', t_data)
-print('y_data:', y_data)
+# print('paramIds:', param_ids)
+# print('t_data:', t_data)
+# print('y_data:', y_data)

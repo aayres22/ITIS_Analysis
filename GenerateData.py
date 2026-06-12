@@ -49,5 +49,5 @@ all_results = {
      'tfinal': tfinal,
   }
 
-with open('syntheticData\\TRUE_SOL32.pkl', 'wb') as f:
+with open('syntheticData\\set2_32.pkl', 'wb') as f:
       pickle.dump(all_results, f)
