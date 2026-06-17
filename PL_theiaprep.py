@@ -5,10 +5,10 @@ from scipy.integrate import odeint
 import pickle
 from scipy.optimize import least_squares
 
-D = '1'         # '1' for ACTH + Cort,
+D = '3'         # '1' for ACTH + Cort,
                 # '2' for ACTH + Cort + TNF-a
                 # '3' for ACTH + Cort + TNF-a + IL10
-dpoints = '1'   # '1' for 25, '2' for 13
+dpoints = '2'   # '1' for 25, '2' for 13
 
 def get_nominal_param():
     d1 = 1.35e-7 # min N-unit inverse
@@ -422,13 +422,13 @@ true_sol = odeint(ITIS, IC_2, tfinal, args = (param_log,), **ode_options)
 #Generate data
 if D == '1':
     output_ids = [6,7]
-    param_ids = [33, 12, 36, 43, 32, 39, 7, 16, 31, 15, 37, 9, 8, 28, 14]
+    param_ids = [33, 12, 36, 32, 43, 39, 16, 7, 31, 37, 8, 15, 9, 28, 14]
 elif D == '2':
     output_ids = [3,6,7]
-    param_ids = [33, 12, 36, 32, 7, 34, 31, 15, 8, 9, 16, 14, 28, 26, 1]
+    param_ids = [12, 33, 16, 7, 36, 43, 15, 39, 32, 8, 31, 14, 9, 1, 34]
 elif D == '3':
     output_ids = [3,4,6,7]
-    param_ids = [12, 33, 7, 16, 36, 43, 39, 15, 32, 31, 22, 8, 9, 14, 21, 10, 1]
+    param_ids =[12, 33, 7, 36, 16, 43, 15, 39, 32, 8, 9, 31, 21, 14, 10, 34]
 
 
 ##use generated sets instead

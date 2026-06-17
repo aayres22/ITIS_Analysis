@@ -1,6 +1,53 @@
 import numpy as np
 from scipy.integrate import odeint
 
+param_key = {
+    0: 'd1',
+    1: 'k1',
+    2: 'k2',
+    3: 'h1',
+    4: 'h2',
+    5: 'h3',
+    6: 'd2',
+    7: 'k3',
+    8: 'k4',
+    9: 'h4',
+    10: 'd3',
+    11: 'h5',
+    12: 'h6',
+    13: 'k5',
+    14: 'k6',
+    15: 'h7',
+    16: 'd4',
+    17: 'b1',
+    18: 'k7',
+    19: 'h8',
+    20: 'k8',
+    21: 'h9',
+    22: 'd5',
+    23: 'h10',
+    24: 'b2',
+    25: 'k9',
+    26: 'k10',
+    27: 'k11',
+    28: 'd6',
+    29: 'k12',
+    30: 'k13',
+    31: 'k14',
+    32: 'h11',
+    33: 'd7',
+    34: 'k15',
+    35: 'k16',
+    36: 'd8',
+    37: 'alpha',
+    38: 'k',
+    39: 'beta',
+    40: 'L',
+    41: 'eps',
+    42: 'delta',
+    43: 'T',
+    44: 'Nc'
+}
 def get_nominal_param():
     d1 = 1.35e-7 # min N-unit inverse
     # Parameters for phagocytes
