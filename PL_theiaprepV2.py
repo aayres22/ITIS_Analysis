@@ -5,10 +5,10 @@ from scipy.integrate import odeint
 import pickle
 from scipy.optimize import least_squares
 
-D = '1'         # '1' for ACTH + Cort,
+D = '3'         # '1' for ACTH + Cort,
                 # '2' for ACTH + Cort + TNF-a
                 # '3' for ACTH + Cort + TNF-a + IL10
-dpoints = '1'   # '1' for 25, '2' for 13
+dpoints = '2'   # '1' for 25, '2' for 13
 
 def get_nominal_param():
     d1 = 1.35e-7 # min N-unit inverse
@@ -191,7 +191,7 @@ def calc_PL_fixpar(
     params,
     bounds,
     par_fix,
-    N=21,
+    N=201,
     profile_width=0.5,
     max_nfev=300,
     finite_diff_step=1e-4,
@@ -533,8 +533,6 @@ def ols_call(x):
 
 par_fix = np.round(np.linspace(0,int(len(param_log)-1),int(len(param_log))))
 par_fix = np.delete(par_fix,param_ids)
-print(par_fix)
-print(param_ids)
 #%%
 J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
     params=param_log[param_ids],
@@ -544,7 +542,7 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
     profile_width=0.5,
     max_nfev=300,
     finite_diff_step=1e-4,
-    verbose=True
+    verbose=False
     #n_jobs=12
             )
 #%%
