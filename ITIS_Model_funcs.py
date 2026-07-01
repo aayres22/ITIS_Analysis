@@ -219,3 +219,39 @@ def OLS_res(param_in,y_data,t_data,param_ids,output_ids,param_fix,IC):
     residual = (y_data - model_output)/np.mean(y_data,axis=0)
 
     return residual.flatten()
+
+#%%
+def ITIS_modelcall(param_in,t_data,param_ids,output_ids,param_fix,IC):
+    # First, we may only want to update certain parameters. This will be defined in param_ids, which should include
+    # the indices for which parameters are updated. Param_fix will have the "fixed" values
+    param_eval = param_fix.copy()
+    param_eval[param_ids] = param_in.copy()
+    ##Define time spaces
+    tstart = 0
+    t_end =24*8
+    dt = .05
+    tspace = np.arange(tstart,t_end,dt) # The time frame to solve the model to reach steady state (before we grab any output)
+    tfinal = np.arange(0,24+dt,dt)
+
+    ##Solve the model at nominal values
+    ode_options = {'rtol': 1e-6} # sets the numerical accuracy of the ODE solver (i.e., how fine of a time step do we need)
+    ODE_sol = odeint(ITIS, IC, tspace, args = (param_fix,), **ode_options)
+
+    # MJC - this is where we can specify that the infection begins during this final time point
+    IC_2    = ODE_sol[-1,:]
+    IC_2[0] = 2.0 ##Pre-inj VALUES AT t = 24*8
+    IC = [ 2.0,0., 0.14759607,  0., 13.75484703,  3.13344442, 15.73028492,  1.38649737]
+    # Resolve model only over 24 hours at subsampled time points. This will be used as our data
+    ODE_sol = odeint(ITIS, IC_2, tfinal, args = (param_eval,), **ode_options)
+
+    # In a similar way, the data may be only a subset of the observations. We will assume that
+    # we have the same number of time points for now, but can modify this as well
+    model_output = np.zeros((len(t_data),len(output_ids)))
+
+    for i, time in enumerate(t_data):
+        t_index = np.where(tfinal==time) #Grabs the index correpsonding to where we have data
+        for j, mod_out in enumerate(output_ids): #Loop over which outputs we want to compare to data
+            model_output[i,j] = ODE_sol[t_index,mod_out][0][0] ##THIS IS BEHAVING WEIRDLY
+
+
+    return model_output
