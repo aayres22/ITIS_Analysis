@@ -189,7 +189,7 @@ def calc_PL_fixpar(
     profile_width=0.5,
     max_nfev=300,
     finite_diff_step=1e-4,
-    verbose=False,
+    verbose=True,
 ):
     """
     Profile likelihood calculation with one globally fixed parameter.
@@ -328,7 +328,7 @@ def calc_PL_fixpar(
     temp_min = np.maximum((1.0 - profile_width) * profile_params, lower)
 
     PL_max = [np.log(3000)] #np.maximum(temp_max, temp_min)
-    PL_min = [1e-2]#np.minimum(temp_max, temp_min)
+    PL_min = [np.log(1e-2)]#np.minimum(temp_max, temp_min)
 
     J_save = np.full((num_profile, N), np.nan)
     par_save = np.full((num_profile, num_profile, N), np.nan)
@@ -543,7 +543,7 @@ J_save, par_save, param_global_all = calc_PL_fixpar(ols_call,
     profile_width=0.5,
     max_nfev=300,
     finite_diff_step=1e-4,
-    verbose=False
+    verbose=True
     #n_jobs=12
             )
 #%%
@@ -572,5 +572,5 @@ all_results = {
     'param_global_all' : np.asarray(param_global_all)
 }
 
-with open('PL_alpha_' + D + dpoints + 'nonoise.pkl', 'wb') as f:
+with open('PL_alpha_' + D + dpoints + 'noisy.pkl', 'wb') as f:
     pickle.dump(all_results, f)
